@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class DistrictService {
@@ -65,7 +66,7 @@ public class DistrictService {
         List<District> myDistricts = new ArrayList<>();
         Region region = regionRepo.getByDistricts(byId);
         for (District district: region.getDistricts()) {
-            if (district.getId() != byId.getId())
+            if (!Objects.equals(district.getId(), byId.getId()))
                 myDistricts.add(district);
         }
         region.setDistricts(myDistricts);

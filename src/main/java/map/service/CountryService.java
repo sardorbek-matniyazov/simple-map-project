@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CountryService {
@@ -65,7 +66,7 @@ public class CountryService {
         List<Country> myCountries = new ArrayList<>();
         Continent continent = continentRepo.getByCountry(byId);
         for (Country c: continent.getCountry()) {
-            if (c.getId() != byId.getId())
+            if (!Objects.equals(c.getId(), byId.getId()))
                 myCountries.add(c);
         }
         continent.setCountry(myCountries);
